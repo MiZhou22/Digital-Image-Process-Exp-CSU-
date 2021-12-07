@@ -159,7 +159,7 @@
 	（3）实现对图像的灰度线性变换，可以看到对图像的较小灰度值范围线性变换到更大的范围内后，图像的对比度提高。在选择不同的变换范围时，整个图像的对比度相应的会发生变化，为了尽可能大地提高图像对比度，我们通常的做法不是寻找使图像对比度最大化的线性变换参数，而是使用更加普适的方法——图像直方图均衡化。
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{1-1}
+		\includegraphics[width=0.7\linewidth]{screenshot002}
 		\caption{线性变换得到的图像及其原图像}
 		\label{fig:1-1}
 	\end{figure}
@@ -175,7 +175,7 @@
 	（3）同屏显示处理前后的图像和灰度直方图，说明处理前后直方图的变化以及对应的灰度变化，如下图所示，将之前的较暗的夜景图进行直方图均衡化之后，均衡化后的图像及其直方图如图\ref{fig:1-2}所示
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.5\linewidth]{1-2}
+		\includegraphics[width=0.5\linewidth]{screenshot003}
 		\caption{夜景图直方图均衡化之后的图像及其直方图}
 		\label{fig:1-2}
 	\end{figure}
@@ -194,12 +194,12 @@
 		gama = (255-g_b)/(255-f_b);
 		
 		%% linear tran
-		% 将pic矩阵分为满足三个区间的三个矩阵
+		% pic divided to three matrix
 		pic1 = double(pic).*alpha.*(pic<f_a);
 		pic2 = (beta.*(double(pic)-f_a)+g_a).*((f_a<=pic) & (pic<f_b));
 		pic3 = (gama.*(double(pic)-f_b)+g_b).*(f_b<=pic);
 		
-		% 矩阵叠加得到最终图像
+		% get the ultimate image
 		pic_result = uint8(pic1+pic2+pic3);
 		figure(1);
 		subplot(1, 2, 1);
@@ -280,7 +280,7 @@
 	（1）对其进行二维傅里叶变换，同屏显示原图f 和其傅里叶变换幅度谱图，如下图\ref{fig:2-2}所示，值得注意的是，此处的幅度谱图的分布是这样的：中心有主极大，亮度最强，占据整个频谱面的绝大部分能量，而向上下左右四侧都出现部分次极大，次极大的强度随着离中心的距离越远，强度越小。并且，由于原始图像是可以看成为竖立的矩形，因此在水平方向的频谱次极大强度强于垂直方向的频谱次极大强度。
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{2-2}
+		\includegraphics[width=0.7\linewidth]{screenshot001}
 		\caption{原始图像与其傅里叶变换幅度谱图}
 		\label{fig:2-2}
 	\end{figure}
@@ -288,7 +288,7 @@
 	（2）若令$f_{1}(x,y)=(-1)^{x+y}* f(x,y)$，重复以上过程，比较二者幅度谱的异同，简述理由，没搞懂。
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{2-3}
+		\includegraphics[width=0.7\linewidth]{screenshot005}
 		\caption{将原图变换之后，得到的图像及其幅度谱}
 		\label{fig:2-3}
 	\end{figure}
@@ -296,7 +296,7 @@
 	（3）若将$f(x,y)$顺时针旋转45度得到$f_{2}(x,y)$，试求出并显示$f_{2}(x,y)$的傅里叶幅度谱，并与$f(x,y)$的幅度谱进行比较和说明。在空间域内，图像做了45度的旋转，相当于乘以45度的相位因子，在频域内表现为位移（也看似旋转），所以最终的效果是频谱幅度谱同样发生旋转。
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{2-4}
+		\includegraphics[width=0.7\linewidth]{screenshot004}
 		\caption{将原始图像顺时针旋转45度得到的图像及其傅里叶幅度谱}
 		\label{fig:2-4}
 	\end{figure}
@@ -307,7 +307,7 @@
 	（1）对其进行二维傅里叶变换，显示其傅里叶变换的幅度谱和相位谱。
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{2-5}
+		\includegraphics[width=0.4\linewidth]{screenshot006}
 		\caption{读入的图像，及其傅里叶变换幅度谱与相位谱}
 		\label{fig:2-5}
 	\end{figure}
@@ -320,7 +320,7 @@
 	（4）使用题1的幅度谱与test6的相位谱进行反傅里叶变换，分析说明重建图像的特点。即灰度信息来自于前面的图像，而相位信息来自于真实图像，可以朦胧看出人的轮廓，但是灰度信息表现得不明显。可以看到确定一幅图像的特性内容时，相位起到支配作用。
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{2-6}
+		\includegraphics[width=0.5\linewidth]{screenshot007}
 		\caption{在（2）、（3）、（4）三种情况下的重建图像}
 		\label{fig:2-6}
 	\end{figure}
@@ -490,7 +490,7 @@
 	1）对原图像分别加入高斯噪声、椒盐噪声。
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{3-1}
+		\includegraphics[width=0.35\linewidth]{screenshot008}
 		\caption{加不同的噪声显示的图像}
 		\label{fig:3-1}
 	\end{figure}
@@ -501,18 +501,18 @@
 	3）利用中值滤波法，分别采用$3*3$，$5*5$模板对加噪声图像进行去噪处理，显示原图像、加噪图像和处理后的图像。
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{3-2}
+		\includegraphics[width=0.85\linewidth]{screenshot009}
 		\caption{使用模板大小的中值滤波方法得到的图像}
 		\label{fig:3-2}
 	\end{figure}
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{3-3}
+		\includegraphics[width=0.85\linewidth]{screenshot010}
 		\caption{使用模板大小的均值滤波方法得到的图像}
 		\label{fig:3-3}
 	\end{figure}
-	
+		
 	
 	4）比较各种滤波方法和滤波模板的处理结果，并分析说明。
 	
@@ -525,7 +525,7 @@
 	此处的参考博客：\url{https://blog.csdn.net/u010936286/article/details/80299959?ops_request_misc=&request_id=&biz_id=102&utm_term=matlab%20%E4%BD%BF%E7%94%A8%E7%9B%B8%E4%BD%8D%E5%92%8C%E6%8C%AF%E5%B9%85%E9%87%8D%E5%BB%BA%E5%9B%BE%E5%83%8F%20%E5%86%88%E8%90%A8%E9%9B%B7%E6%96%AF&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-80299959.first_rank_v2_pc_rank_v29&spm=1018.2226.3001.4187}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.7\linewidth]{3-4}
+		\includegraphics[width=0.85\linewidth]{screenshot011}
 		\caption{使用不同的频域滤波器实现的滤波效果}
 		\label{fig:3-4}
 	\end{figure}
